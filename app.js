@@ -1,6 +1,8 @@
 /**
  * Example store structure
  */
+
+/* My questions */
 const STORE = {
     questions: [{
         //question 1
@@ -66,12 +68,14 @@ const STORE = {
     score: 0
 };
 
+/* Replaces the h1 title */
 function renderTitle() {
     $("h1").html(function() {
         return 'Houston Rockets Quiz';
     });
 }
 
+/* Start screen when the function is called */
 function renderStartScreen() {
     return `
         <div class='start-screen'>
@@ -80,6 +84,7 @@ function renderStartScreen() {
         </div>`;
 }
 
+/* Function for current question and current score */
 function renderQuestionAndScore() {
     return `
     <ul class='question-and-score'>
@@ -92,6 +97,7 @@ function renderQuestionAndScore() {
     </ul>`;
 }
 
+/* function for multiple choice options */
 function renderAnswers() {
     const answersArray = STORE.questions[STORE.currentQuestion].answers
     let answers = '';
@@ -108,6 +114,7 @@ function renderAnswers() {
     return answers;
 }
 
+/* Form for the question */
 function renderQuestion(question) {
     let currentQuestion = STORE.questions[STORE.currentQuestion];
     return `
@@ -127,6 +134,7 @@ function renderQuestion(question) {
         </form >`;
 }
 
+/* Results screen with a reset button */
 function renderResultsScreen() {
     return `
         <div class="results">
@@ -148,6 +156,7 @@ function renderResultsScreen() {
         </div>`;
 }
 
+/* Function for event of correct or incorrect answer */
 function renderFeedback(answerStatus) {
     let correctAnswer = STORE.questions[STORE.currentQuestion].correctAnswer;
     let html = '';
@@ -162,6 +171,7 @@ function renderFeedback(answerStatus) {
     return html;
 }
 
+/* html render function */
 function render() {
     let html = '';
   
@@ -179,6 +189,7 @@ function render() {
     }
 }
 
+/* Button to start the quiz */
 function renderStartClick() {
     $('main').on('click', '#start', function (event) {
         STORE.quizStart = true;
@@ -186,12 +197,14 @@ function renderStartClick() {
     });
 }
 
+/* Button for the next question */
 function renderNextQuestionClick() {
     $('body').on('click', '#next-question-btn', (event) => {
         render();
     });
 }
 
+/* Function when the user submits an answer */
 function renderQuestionFormSubmit() {
     $('body').on('submit', '#question-form', function (event) {
         event.preventDefault();
@@ -215,12 +228,14 @@ function renderQuestionFormSubmit() {
     });
 }
 
+/* resets the data for the quiz */
 function restartQuiz() {
     STORE.quizStarted = false;
     STORE.currentQuestion = 0;
     STORE.score = 0;
 }
 
+/* Button to restart the quiz */
 function renderRestartButton() {
     $('body').on('click', '#restart', () => {
         restartQuiz();
